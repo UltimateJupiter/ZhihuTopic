@@ -40,12 +40,15 @@ def fetch(i):
 
     q_res = get_answer_of_q(questions, 100)
     total_ans = sum(len(x) for x in q_res)
-    
+
     fl = './log/{}_{}_q.json'.format(tid, name)
     with open(fl, 'w') as outfile:
         json.dump(q_res, outfile)
     print("{} extended search done with {} answers".format(name, total_ans))
 
 if __name__ == "__main__":
-    for i in range(len(task_list)):
-        fetch(i)
+    if len(sys.argv) == 2:
+        fetch(int(sys.argv[1]))
+    else:
+        for i in range(len(task_list)):
+            fetch(i)

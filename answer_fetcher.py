@@ -5,6 +5,7 @@ import json
 from joblib import Parallel, delayed
 
 import time
+import datetime
 import numpy
 
 headers = {
@@ -46,7 +47,10 @@ def get_answers(q_id, answer_count):
     return res
 
 def get_answer_of_q(qids, n_answer):
-    res = Parallel(n_jobs=2, verbose=10)(delayed(get_answers)(qid, n_answer) for qid in qids)
+    res = []
+    for i, qid in enumerate(qids):
+        res.append(get_answers(qid, n_answer))
+        print(i / len(qids), datetime.datetime.now())
     return res
 
 if __name__ == '__main__':
