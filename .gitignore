@@ -6,5 +6,6 @@
 qdata.egg-info/
 build/
 dist/
-
+sbatchlog/
+log/
 test.py
