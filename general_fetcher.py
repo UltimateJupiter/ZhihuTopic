@@ -49,6 +49,10 @@ def fetch(i):
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         fetch(int(sys.argv[1]))
+    elif len(sys.argv) == 3:
+        print("seq")
+        for i in range(int(sys.argv[1]), int(sys.argv[2]) + 1):
+            fetch(i)
     else:
         for i in range(len(task_list)):
             fetch(i)
