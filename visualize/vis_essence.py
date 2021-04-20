@@ -23,7 +23,9 @@ task_list = [
     [19599479, "世界史", "World History"],
     [19551424, "政治", "Politics"],
     [19566933, "社会", "Society"],
-    [19551077, "历史", "History"]
+    [19551077, "历史", "History"],
+    [19731341, "剩余价值", "Surplus Value"],
+    [19653241, "资本论", "Das Kapital"],
 ]
 
 def seq_moving_average(x, w):
@@ -114,7 +116,7 @@ def label_axis(dates):
             ticks_minor.append(date)
     return ticks_major, ticks_major_keys, ticks_minor
 
-def vis_extend(args=None, normalize_args=None, smooth=1000, comment_weight=5, name=''):
+def vis_extend(args=None, normalize_args=None, smooth=1200, comment_weight=2, name=''):
 
     flows = []
     kws = []
@@ -136,7 +138,11 @@ def vis_extend(args=None, normalize_args=None, smooth=1000, comment_weight=5, na
         plt.plot(dates, index_smooth, label=kws[i])
 
     plt.ylim([-0.1, 1.19])
-    plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1.05), ncol=5, fancybox=False, shadow=False)
+    if len(args) >= 6:
+        ncols = 3
+    else:
+        ncols = 4
+    plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1.05), ncol=ncols, fancybox=False, shadow=False)
     ticks_major, ticks_major_keys, ticks_minor = label_axis(dates)
     plt.xticks(ticks_major, ticks_major_keys)
     plt.gca().set_xticks(ticks_minor, minor=True)
@@ -144,11 +150,11 @@ def vis_extend(args=None, normalize_args=None, smooth=1000, comment_weight=5, na
     plt.xlabel('Year')
     plt.ylabel('Popularity Index (Normalized)')
 
-    plt.savefig('index_{}.png'.format(name), dpi=300)
+    plt.savefig('./figs/index_{}.png'.format(name), dpi=300)
     # print(flows, kws)
 
 if __name__ == "__main__":
-    vis_extend([0,1,2,3], normalize_args=[11, 12, 13, 14], name='Overwork')
+    vis_extend([0,1,2,3,15,16], normalize_args=[11, 12, 13, 14], name='Overwork')
     vis_extend([5,6,7,8], normalize_args=[11, 12, 13, 14], name='Left')
     vis_extend([9,10], normalize_args=[11, 12, 13, 14], name='Soviet')
     # vis_extend([0,1,2], normalize_args=[11, 12, 13, 14], name='Overwork')
