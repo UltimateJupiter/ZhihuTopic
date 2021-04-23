@@ -9,7 +9,7 @@ import json
 plt.style.use('ggplot')
 
 task_list = [
-    [19662742, "资本家", "Bourgeois"],
+    [19662742, "资本家", "Capitalists"],
     [19582963, "资本主义", "Capitalism"],
     [19960840, "强制加班","Mandatory Overwork"],
     [20064332, "996", "996"],
